@@ -355,7 +355,12 @@ class Select extends Component
                             :aria-labelledby="$id('select-label')"
                             :aria-multiselectable="multiple"
                             class="py-1 overflow-auto max-h-60"
-                        >
+                        >   
+                            @isset($add_action)
+                            <li class="flex justify-center">
+                                {{ $add_action }}
+                            </li>
+                            @endisset
                             <template x-if="multiple && limit && selected.length >= limit">
                                 <li class="px-3 py-2 text-sm text-red-500 dark:text-red-500">
                                     Maximum limit of <span x-text="limit"></span> items reached
@@ -380,12 +385,12 @@ class Select extends Component
                                             </span>
                                         </template>
                                         <template x-if="option.avatar">
-                                            <img :src="option.avatar" class="w-5 h-5 rounded-full" :alt="option.name">
+                                            <img :src="option.avatar" class="w-5 h-5 rounded-full" />
                                         </template>
                                         <div>
-                                            <span x-text="option.name"></span>
+                                            <span class="font-medium" x-text="option.name"></span>
                                             <template x-if="option.description">
-                                                <p class="text-gray-500 dark:text-gray-400" x-text="option.description"></p>
+                                                <p class="text-gray-500 dark:text-gray-400 text-xs lowercase" x-text="option.description"></p>
                                             </template>
                                         </div>
                                     </div>

@@ -52,33 +52,32 @@ class Index extends Component
                     ]) 
                 }}
             >
-                @if(isset($bulkActions) || $searchable || isset($filters))
+                @if(isset($actions) || $searchable || isset($filters))
                     <div class="items-center justify-between block px-4 py-3 space-y-2 sm:flex sm:space-y-0">
-                        <div class="flex items-center gap-3">
-                            @isset($bulkActions)
-                                {{ $bulkActions }}
+                        <div class="flex items-center gap-1">
+                            @isset($actions)
+                                {{ $actions }}
+                            @endisset
+                             @isset($filters)
+                                {{ $filters }}
                             @endisset
                         </div>
 
-                        <div class="flex items-center gap-3">
+                        <div class="">
                             @if($searchable)
                                 <form onsubmit="event.preventDefault();" action="#" method="GET">
                                     <label for="categories-search" class="sr-only">Search</label>
-                                    <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
+                                    <div class="relative mt-1 w-full xl:w-96">
                                         <x-tc-input type="search" wire:model.live.debounce.250ms="tcSearch" placeholder="{{ __('Search') }}.." icon="magnifying-glass" class:icon="text-gray-500 size-[18px]" />
                                     </div>
                                 </form>
                             @endif
-
-                            @isset($filters)
-                                {{ $filters }}
-                            @endisset
                         </div>
                     </div>
                 @endif
                 
                 <div @class(["flex flex-col", 'divide-y divide-gray-200 dark:divide-gray-700' => !$attributes->get('borderless')])>
-                    <div class="relative overflow-x-auto tc-table">
+                    <div class="relative overflow-auto tc-table">
                         <div class="inline-block min-w-full align-middle">
                             <div class="overflow-hidden">
                                 <table 
