@@ -108,6 +108,7 @@ class Select extends Component
                                     id: option.id ?? option.value ?? option.key,
                                     name: option.name ?? option.title ?? option.label ?? option.text,
                                     avatar: option.avatar ?? option.image ?? null,
+                                    icon: option.icon ?? null,
                                     description: option.description ?? null
                                 }));
                             }
@@ -118,6 +119,7 @@ class Select extends Component
                                     id: key,
                                     name: value.toString(),
                                     avatar: null,
+                                    icon: null,
                                     description: null
                                 }));
                             }
@@ -127,6 +129,7 @@ class Select extends Component
                                 id: value,
                                 name: value.toString(),
                                 avatar: null,
+                                icon: null,
                                 description: null
                             }));
                         },
@@ -287,6 +290,9 @@ class Select extends Component
                                 <span class="inline-flex items-center gap-1 bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
                                     <template x-if="option.avatar">
                                         <img :src="option.avatar" class="w-5 h-5 rounded-full" :alt="option.name">
+                                    </template>
+                                    <template x-if="option.icon">
+                                        <div x-html="option.icon"></div>
                                     </template>
                                     <span x-text="option.name"></span>
                                     <template x-if="multiple || clearable">
