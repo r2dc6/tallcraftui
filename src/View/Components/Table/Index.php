@@ -58,12 +58,9 @@ class Index extends Component
                             @isset($actions)
                                 {{ $actions }}
                             @endisset
-                             @isset($filters)
-                                {{ $filters }}
-                            @endisset
                         </div>
 
-                        <div class="">
+                        <div class="flex items-center gap-2">
                             @if($searchable)
                                 <form onsubmit="event.preventDefault();" action="#" method="GET">
                                     <label for="categories-search" class="sr-only">Search</label>
@@ -72,6 +69,9 @@ class Index extends Component
                                     </div>
                                 </form>
                             @endif
+                            @isset($filters)
+                                {{ $filters }}
+                            @endisset
                         </div>
                     </div>
                 @endif
